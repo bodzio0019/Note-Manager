@@ -1,10 +1,18 @@
 import "./App.css";
+import AsideLeft from "./components/AsideLeft";
+import AsideRight from "./components/AsideRight";
+import TextInput from "./components/TextInput";
 
 function App() {
-  console.log("Hello");
   return (
     <>
-      <h1 className="text-red-500">Hello World!</h1>
+      <main className="flex h-full">
+        <AsideLeft />
+        <section className="h-full w-full mt-[100px] flex flex-col items-center">
+          <TextInput />
+        </section>
+        <AsideRight />
+      </main>
     </>
   );
 }
