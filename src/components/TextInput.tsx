@@ -11,7 +11,7 @@ function TextInput() {
         placeholder="Write some notes..."
       ></textarea>
       <div className="w-3/4 py-5 flex justify-between">
-        <button className="h-[40px] border border-[#fff] hover:border-blue-200 w-[150px] ml-10 bg-[#e0c5ff95] rounded-[30px] shadow-lg transition hover:scale-110 tracking-wider">
+        <button className="h-[40px] border border-[#fff] hover:border-blue-200 w-[150px] ml-10 bg-[#ebf1fd] rounded-[30px] shadow-lg transition hover:scale-110 tracking-wider">
           Reset
         </button>
         <button className="h-[40px] w-[150px] border border-[#fff] hover:border-blue-200 mr-10 bg-[#cfa5ff95] rounded-[30px] shadow-lg transition hover:scale-110 tracking-wider">

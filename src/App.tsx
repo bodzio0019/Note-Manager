@@ -1,19 +1,14 @@
 import "./App.css";
-import AsideLeft from "./components/AsideLeft";
-import AsideRight from "./components/AsideRight";
-import TextInput from "./components/TextInput";
+import { Routes, Route } from "react-router-dom";
+import NewNote from "./pages/NewNote";
+import AllNotes from "./pages/AllNotes";
 
 function App() {
   return (
-    <>
-      <main className="flex h-full">
-        <AsideLeft />
-        <section className="h-full w-full mt-[100px] flex flex-col items-center">
-          <TextInput />
-        </section>
-        <AsideRight />
-      </main>
-    </>
+    <Routes>
+      <Route path="/" element={<NewNote />} />
+      <Route path="/allnotes" element={<AllNotes />} />
+    </Routes>
   );
 }
 
