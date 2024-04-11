@@ -1,6 +1,17 @@
+import AsideItem from "./AsideItem";
+
 function AsideRight() {
   return (
-    <aside className="h-full w-1/4 flex flex-col items-center">Right</aside>
+    <div className="h-screen w-[20%] py-[100px] pr-5">
+      <aside className="h-[70vh] flex flex-col overflow-auto items-center border-dashed border-y border-black-200">
+        <AsideItem />
+        <AsideItem />
+        <AsideItem />
+        <AsideItem />
+        <AsideItem />
+        <AsideItem />
+      </aside>
+    </div>
   );
 }
 
