@@ -7,7 +7,7 @@ function TextInput() {
         placeholder="Title"
       />
       <textarea
-        className="w-3/4 h-[500px] p-4 bg-[#f5f8ff] font-mono resize-none outline-none border-2 border-[#fff] border-solid transition focus:border-blue-200 rounded-[30px] shadow-xl placeholder:animate-pulse"
+        className="w-[90%] h-[600px] p-4 bg-[#f5f8ff] font-mono resize-none outline-none border-2 border-[#fff] border-solid transition focus:border-blue-200 rounded-[30px] shadow-xl placeholder:animate-pulse"
         placeholder="Write some notes..."
       ></textarea>
       <div className="w-3/4 py-5 flex justify-between">

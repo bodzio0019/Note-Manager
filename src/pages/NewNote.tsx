@@ -7,7 +7,7 @@ function NewNote() {
     <>
       <main className="flex h-full">
         <AsideLeft />
-        <section className="h-full w-full mt-[100px] flex flex-col items-center">
+        <section className="h-full w-full mt-[50px] flex flex-col items-center">
           <TextInput />
         </section>
         <AsideRight />

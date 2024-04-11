@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function AsideLeft() {
   return (
     <aside className="h-full w-1/5 flex flex-col items-center">
-      <Link to="/" className="flex flex-col items-center">
+      <Link to="/AllNotes" className="flex flex-col items-center">
         <img
           className="w-4/5 mt-8 hover:cursor-pointer"
           src={logo}

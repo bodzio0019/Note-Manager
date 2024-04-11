@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import data from "../data/data";
 import AsideItem from "./AsideItem";
 
@@ -9,11 +10,16 @@ function AsideRight() {
         <div className="h-[70vh] flex flex-col overflow-auto items-center border-dashed border-y border-black-200">
           {data.map((item) => {
             return (
-              <AsideItem
-                key={item.id}
-                title={item.title}
-                content={item.content}
-              />
+              <Link
+                to={`/notes/${item.id}`}
+                className="flex flex-col items-center"
+              >
+                <AsideItem
+                  key={item.id}
+                  title={item.title}
+                  content={item.content}
+                />
+              </Link>
             );
           })}
         </div>
