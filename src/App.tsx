@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import NewNote from "./pages/NewNote";
 import AllNotes from "./pages/AllNotes";
 import Note from "./pages/Note";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import data from "./data/data";
 
 function App() {
@@ -16,6 +16,9 @@ function App() {
 
   const [edit, setEdit] = useState<Edit | undefined>(undefined);
   const [notes, setNotes] = useState<Edit[]>(data);
+  useEffect(() => {
+    localStorage.setItem("data", JSON.stringify(notes));
+  }, [notes]);
 
   return (
     <Routes>

@@ -28,7 +28,7 @@ function TextInput({ edit, notes, setNotes }: Props) {
       return i.id === (edit ? edit.id : null);
     });
     if (itemFound) {
-      const index = notes.indexOf(itemFound as Edit);
+      const index = notes.indexOf(itemFound);
       const newNotes = [...notes];
       newNotes[index].content = document.querySelector("textarea")!.value;
       newNotes[index].title = document.querySelector("input")!.value;
