@@ -15,18 +15,25 @@ function App() {
   }
 
   const [edit, setEdit] = useState<Edit | undefined>(undefined);
-  const [notes, setNotes] = useState(data);
+  const [notes, setNotes] = useState<Edit[]>(data);
 
   return (
     <Routes>
       <Route
-        path="/"
-        element={<NewNote edit={edit} notes={notes} setNotes={setNotes} />}
+        path="/newNote"
+        element={
+          <NewNote
+            edit={edit}
+            setEdit={setEdit}
+            notes={notes}
+            setNotes={setNotes}
+          />
+        }
       />
-      <Route path="/allnotes" element={<AllNotes notes={notes} />} />
+      <Route path="/" element={<AllNotes notes={notes} setEdit={setEdit} />} />
       <Route
         path="/notes/:noteId"
-        element={<Note notes={notes} edit={edit} setEdit={setEdit} />}
+        element={<Note notes={notes} setEdit={setEdit} setNotes={setNotes} />}
       />
     </Routes>
   );

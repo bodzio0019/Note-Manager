@@ -8,17 +8,20 @@ interface Edit {
   date: number;
   content: string;
 }
-type Props = { notes: Edit[] };
+type Props = {
+  notes: Edit[];
+  setEdit: React.Dispatch<React.SetStateAction<Edit | undefined>>;
+};
 
-function AllNotes({ notes }: Props) {
+function AllNotes({ notes, setEdit }: Props) {
   return (
     <>
       <main className="flex h-full">
-        <AsideLeft />
+        <AsideLeft setEdit={setEdit} />
         <section className="h-full w-full mt-[50px] mb-[50px] flex flex-col items-center">
           <AllNotesWrapper notes={notes} />
         </section>
-        <AsideRight />
+        <AsideRight notes={notes} />
       </main>
     </>
   );

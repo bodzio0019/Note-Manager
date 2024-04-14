@@ -13,7 +13,7 @@ function AllNotesWrapper({ notes }: Props) {
   return (
     <>
       <div className="p-5 font-bold text-xl">All notes</div>
-      <section className="grid grid-cols-3">
+      <section className="grid grid-cols-3 w-[95%]">
         {notes.map((item) => {
           return (
             <Link to={`/notes/${item.id}`} key={item.id}>

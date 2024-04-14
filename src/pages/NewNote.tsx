@@ -10,6 +10,7 @@ interface Edit {
 }
 type Props = {
   edit: Edit | undefined;
+  setEdit: React.Dispatch<React.SetStateAction<Edit | undefined>>;
   notes: Edit[];
   setNotes: React.Dispatch<
     React.SetStateAction<
@@ -22,15 +23,16 @@ type Props = {
     >
   >;
 };
-function NewNote({ edit, notes, setNotes }: Props) {
+
+function NewNote({ edit, setEdit, notes, setNotes }: Props) {
   return (
     <>
       <main className="flex h-full">
-        <AsideLeft />
+        <AsideLeft setEdit={setEdit} />
         <section className="h-full w-full mt-[50px] flex flex-col items-center">
           <TextInput edit={edit} notes={notes} setNotes={setNotes} />
         </section>
-        <AsideRight />
+        <AsideRight notes={notes} />
       </main>
     </>
   );
