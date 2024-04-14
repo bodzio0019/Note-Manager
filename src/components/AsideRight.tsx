@@ -13,6 +13,7 @@ function AsideRight() {
               <Link
                 to={`/notes/${item.id}`}
                 className="flex flex-col items-center"
+                key={item.id}
               >
                 <AsideItem
                   key={item.id}
