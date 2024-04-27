@@ -1,8 +1,10 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 const URL = require("./pass.cjs");
 
 const app = express();
+app.use(cors());
 app.use(express.static("./dist"));
 
 mongoose
