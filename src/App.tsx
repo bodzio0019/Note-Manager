@@ -20,6 +20,19 @@ function App() {
     localStorage.setItem("data", JSON.stringify(notes));
   }, [notes]);
 
+  useEffect(() => {
+    fetch("http://localhost/api/list")
+      .then((result) => {
+        return result.json();
+      })
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
+
   return (
     <Routes>
       <Route
