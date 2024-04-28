@@ -18,7 +18,7 @@ function App() {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    fetch("http://34.116.166.253/api/notes")
+    fetch("http://localhost/api/notes")
       .then((result) => result.json())
       .then((result) => {
         console.log("Data GET:", result);
