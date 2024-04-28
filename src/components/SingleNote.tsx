@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 interface Edit {
-  id: number;
+  _id: string;
   title: string;
   date: number;
   content: string;
@@ -13,7 +13,7 @@ type Props = {
   setNotes: React.Dispatch<
     React.SetStateAction<
       {
-        id: number;
+        _id: string;
         title: string;
         date: number;
         content: string;
@@ -24,7 +24,7 @@ type Props = {
 
 function SingleNote({ item, notes, setEdit, setNotes }: Props) {
   const itemFound = notes.find((i) => {
-    return i.id === item.id;
+    return i._id === item._id;
   }) as Edit;
   const index = notes.indexOf(itemFound);
 
@@ -34,9 +34,16 @@ function SingleNote({ item, notes, setEdit, setNotes }: Props) {
 
   function handleDelete() {
     const newData = notes.filter((i) => {
-      return i.id !== itemFound.id;
+      return i._id !== itemFound._id;
     });
     setNotes(newData);
+
+    fetch(`/api/notes/${itemFound.date}`, {
+      method: "DELETE",
+    })
+      .then((result) => result.json())
+      .then((result) => console.log("Data DELETE:", result))
+      .catch((err) => console.log("DELETE error:", err));
   }
 
   return (

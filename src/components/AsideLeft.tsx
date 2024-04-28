@@ -2,7 +2,7 @@ import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 
 interface Edit {
-  id: number;
+  _id: string;
   title: string;
   date: number;
   content: string;

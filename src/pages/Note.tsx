@@ -4,7 +4,7 @@ import AsideRight from "../components/AsideRight";
 import { useParams } from "react-router-dom";
 
 interface Edit {
-  id: number;
+  _id: string;
   title: string;
   date: number;
   content: string;
@@ -15,20 +15,21 @@ type Props = {
   setNotes: React.Dispatch<
     React.SetStateAction<
       {
-        id: number;
+        _id: string;
         title: string;
         date: number;
         content: string;
       }[]
     >
   >;
+  loading: boolean;
 };
 
-function Note({ notes, setEdit, setNotes }: Props) {
+function Note({ notes, setEdit, setNotes, loading }: Props) {
   const params = useParams();
-  const id = params.noteId as string;
+  const id = params.noteId!;
   const item = notes.find((i) => {
-    return i.id === +id;
+    return i._id === id;
   }) as Edit;
 
   return (
@@ -43,7 +44,7 @@ function Note({ notes, setEdit, setNotes }: Props) {
             setNotes={setNotes}
           />
         </section>
-        <AsideRight notes={notes} />
+        <AsideRight notes={notes} loading={loading} />
       </main>
     </>
   );

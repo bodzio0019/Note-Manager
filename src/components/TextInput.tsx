@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 interface Edit {
-  id: number;
+  _id: string;
   title: string;
   date: number;
   content: string;
@@ -13,7 +13,7 @@ type Props = {
   setNotes: React.Dispatch<
     React.SetStateAction<
       {
-        id: number;
+        _id: string;
         title: string;
         date: number;
         content: string;
@@ -25,27 +25,59 @@ type Props = {
 function TextInput({ edit, notes, setNotes }: Props) {
   function handleSave() {
     const itemFound = notes.find((i) => {
-      return i.id === (edit ? edit.id : null);
+      return i._id === (edit ? edit._id : null);
     });
     if (itemFound) {
+      const itemCopy = structuredClone(itemFound);
       const index = notes.indexOf(itemFound);
       const newNotes = [...notes];
-      newNotes[index].content = document.querySelector("textarea")!.value;
-      newNotes[index].title = document.querySelector("input")!.value;
-      newNotes[index].date = Date.now();
+      const content = document.querySelector("textarea")!.value;
+      newNotes[index].content = content;
+      const title = document.querySelector("input")!.value;
+      newNotes[index].title = title;
+      const time = Date.now();
+      newNotes[index].date = time;
       setNotes(newNotes);
+
+      fetch(`/api/notes/${itemCopy.date}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ title: title, date: time, content: content }),
+      })
+        .then((result) => result.json())
+        .then((result) => console.log("Data PUT:", result))
+        .catch((err) => console.log("PUT error:", err));
     } else {
       const newNotes = [...notes];
       const newItem = {
-        id: 0,
+        _id: "0",
         title: document.querySelector("input")!.value,
         date: Date.now(),
         content: document.querySelector("textarea")!.value,
       };
       newNotes.push(newItem);
       const index = newNotes.indexOf(newItem);
-      newNotes[index].id = newNotes[index - 1] ? newNotes[index - 1].id + 1 : 1;
+      newNotes[index]._id = Number(newNotes[index - 1]?._id)
+        ? String(Number(newNotes[index - 1]._id) + 1)
+        : "1";
       setNotes(newNotes);
+
+      fetch("/api/notes", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title: newItem.title,
+          date: newItem.date,
+          content: newItem.content,
+        }),
+      })
+        .then((result) => result.json())
+        .then((result) => console.log("Data POST:", result))
+        .catch((err) => console.log("POST error:", err));
     }
   }
 
