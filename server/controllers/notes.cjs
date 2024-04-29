@@ -51,4 +51,9 @@ const deleteNote = (req, res) => {
     });
 };
 
-module.exports = { showNote, updateNote, createNote, deleteNote };
+const redirect = (req, res) => {
+  console.log("Redirected to index.html");
+  res.redirect("/");
+};
+
+module.exports = { showNote, updateNote, createNote, deleteNote, redirect };

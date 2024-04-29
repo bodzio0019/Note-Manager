@@ -8,6 +8,7 @@ const {
   updateNote,
   createNote,
   deleteNote,
+  redirect,
 } = require("./controllers/notes.cjs");
 
 // Middlewares
@@ -39,3 +40,5 @@ app.put("/api/notes/:date", updateNote);
 app.post("/api/notes", createNote);
 
 app.delete("/api/notes/:date", deleteNote);
+
+app.get("*", redirect);
