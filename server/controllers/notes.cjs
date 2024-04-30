@@ -5,6 +5,10 @@ const showNote = (req, res) => {
     .select("-__v")
     .then((result) => {
       console.log("Data GET:", result);
+      console.log(
+        "IP adress of client:",
+        req.socket.remoteAddress.replace("::ffff:", "")
+      );
       res.json(result);
     })
     .catch((err) => {
