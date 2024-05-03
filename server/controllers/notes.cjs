@@ -1,14 +1,24 @@
 const Notes = require("../models/notes.cjs");
+const fs = require("fs").promises;
 
 const showNote = (req, res) => {
   Notes.find()
     .select("-__v")
     .then((result) => {
-      console.log("Data GET:", result);
+      const ip = `IP of client: ${req.socket.remoteAddress.replace(
+        "::ffff:",
+        ""
+      )} / ${new Date()}\n`;
+      fs.writeFile("iplist.txt", ip, { flag: "a" }).catch((err) => {
+        "Error when saving IP:", err;
+      });
       console.log(
-        "IP adress of client:",
-        req.socket.remoteAddress.replace("::ffff:", "")
+        `\nIP of client: ${req.socket.remoteAddress.replace(
+          "::ffff:",
+          ""
+        )} / ${new Date()}\n`
       );
+      console.log("Data GET:", result);
       res.json(result);
     })
     .catch((err) => {
