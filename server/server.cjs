@@ -9,6 +9,7 @@ const {
   createNote,
   deleteNote,
   redirect,
+  showIp,
 } = require("./controllers/notes.cjs");
 
 // Middlewares
@@ -40,5 +41,7 @@ app.put("/api/notes/:date", updateNote);
 app.post("/api/notes", createNote);
 
 app.delete("/api/notes/:date", deleteNote);
+
+app.get("/ip", showIp);
 
 app.get("*", redirect);

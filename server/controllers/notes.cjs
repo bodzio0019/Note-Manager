@@ -1,5 +1,6 @@
 const Notes = require("../models/notes.cjs");
 const fs = require("fs").promises;
+const path = require("path");
 
 const showNote = (req, res) => {
   Notes.find()
@@ -70,4 +71,15 @@ const redirect = (req, res) => {
   res.redirect("/");
 };
 
-module.exports = { showNote, updateNote, createNote, deleteNote, redirect };
+const showIp = (req, res) => {
+  res.sendFile(path.join(__dirname, "../iplist.txt"));
+};
+
+module.exports = {
+  showNote,
+  updateNote,
+  createNote,
+  deleteNote,
+  redirect,
+  showIp,
+};
