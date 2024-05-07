@@ -6,11 +6,11 @@ const showNote = (req, res) => {
   Notes.find()
     .select("-__v")
     .then((result) => {
-      const ip = `IP of client: ${req.socket.remoteAddress.replace(
+      const ip = `NM: IP of client: ${req.socket.remoteAddress.replace(
         "::ffff:",
         ""
       )} / ${new Date()}\n`;
-      fs.writeFile("iplist.txt", ip, { flag: "a" }).catch((err) => {
+      fs.writeFile("../../iplist.txt", ip, { flag: "a" }).catch((err) => {
         "Error when saving IP:", err;
       });
       console.log(
@@ -67,12 +67,11 @@ const deleteNote = (req, res) => {
 };
 
 const redirect = (req, res) => {
-  console.log("Redirected to index.html");
   res.redirect("/");
 };
 
 const showIp = (req, res) => {
-  res.sendFile(path.join(__dirname, "../iplist.txt"));
+  res.sendFile(path.join(__dirname, "../../../iplist.txt"));
 };
 
 module.exports = {
