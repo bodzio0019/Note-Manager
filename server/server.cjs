@@ -31,7 +31,7 @@ mongoose
       console.log("Failed to create server:", error);
     }
   })
-  .catch((err) => console.group("Failed to connect to MongoDB:", err));
+  .catch((err) => console.log("Failed to connect to MongoDB:", err));
 
 // REST API
 app.get("/api/notes", showNote);
