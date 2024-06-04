@@ -6,19 +6,6 @@ const showNote = (req, res) => {
   Notes.find()
     .select("-__v")
     .then((result) => {
-      const ip = `NM: IP of client: ${req.socket.remoteAddress.replace(
-        "::ffff:",
-        ""
-      )} / ${new Date()}\n`;
-      fs.writeFile("../../iplist.txt", ip, { flag: "a" }).catch((err) => {
-        "Error when saving IP:", err;
-      });
-      console.log(
-        `\nIP of client: ${req.socket.remoteAddress.replace(
-          "::ffff:",
-          ""
-        )} / ${new Date()}\n`
-      );
       console.log("Data GET:", result);
       res.json(result);
     })
