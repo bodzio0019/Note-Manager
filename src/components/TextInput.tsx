@@ -46,9 +46,15 @@ function TextInput({ edit, notes, setNotes }: Props) {
         },
         body: JSON.stringify({ title: title, date: time, content: content }),
       })
-        .then((result) => result.json())
+        .then((result) => {
+          if (result.ok) {
+            return result.json();
+          } else {
+            throw new Error("Failed connection to the server");
+          }
+        })
         .then((result) => console.log("Data PUT:", result))
-        .catch((err) => console.log("PUT error:", err));
+        .catch((err) => console.log(`PUT error: ${err.message}`));
     } else {
       const newNotes = [...notes];
       const newItem = {
@@ -75,9 +81,15 @@ function TextInput({ edit, notes, setNotes }: Props) {
           content: newItem.content,
         }),
       })
-        .then((result) => result.json())
+        .then((result) => {
+          if (result.ok) {
+            return result.json();
+          } else {
+            throw new Error("Failed connection to the server");
+          }
+        })
         .then((result) => console.log("Data POST:", result))
-        .catch((err) => console.log("POST error:", err));
+        .catch((err) => console.log(`POST error: ${err.message}`));
     }
   }
 

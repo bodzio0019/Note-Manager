@@ -19,15 +19,20 @@ function App() {
 
   useEffect(() => {
     fetch("/api/notes")
-      .then((result) => result.json())
+      .then((result) => {
+        if (result.ok) {
+          return result.json();
+        } else {
+          throw new Error("Failed connection to the server");
+        }
+      })
       .then((result) => {
         console.log("Data GET:", result);
         setNotes(result);
         setLoading(false);
       })
       .catch((err) => {
-        console.log("GET error:", err);
-        setLoading(false);
+        console.log(`GET error: ${err.message}`);
       });
   }, []);
 

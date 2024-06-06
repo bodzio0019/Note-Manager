@@ -41,9 +41,15 @@ function SingleNote({ item, notes, setEdit, setNotes }: Props) {
     fetch(`/api/notes/${itemFound.date}`, {
       method: "DELETE",
     })
-      .then((result) => result.json())
+      .then((result) => {
+        if (result.ok) {
+          return result.json();
+        } else {
+          throw new Error("Failed connection to the server");
+        }
+      })
       .then((result) => console.log("Data DELETE:", result))
-      .catch((err) => console.log("DELETE error:", err));
+      .catch((err) => console.log(`DELETE error: ${err.message}`));
   }
 
   return (
